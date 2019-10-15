@@ -1,0 +1,20 @@
+Standard ML of New Jersey v110.91 [built: Thu Jun 20 11:06:57 2019]
+- use "hw0provided.sml"
+= ;
+[opening hw0provided.sml]
+val f = fn : int * int -> int
+val double = fn : int -> int
+val triple = fn : int -> int
+val it = () : unit
+- use "hw0test.sml";
+[opening hw0test.sml]
+val test1 = true : bool
+val test2 = true : bool
+val test3 = true : bool
+val test4 = true : bool
+val test5 = true : bool
+val test6 = true : bool
+val test7 = true : bool
+val test8 = true : bool
+val it = () : unit
+- 

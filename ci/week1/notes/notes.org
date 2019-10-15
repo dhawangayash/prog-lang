@@ -1,0 +1,55 @@
+
+* Notes for week 1
+** What's recursion?
+Recursion is the idea of defining some computation in terms of itself, defining some data in terms of itself.
+
+** Implementation Vs Interface
+The idea that client of some code only have a high level idea of what the code is doing and should not have exposed to them the implementation details. They should'nt rely on those implementation details. This goes by a lot of different names: abstraction, encapsulation, and modularity.
+
+
+* Syllabus
+** Dynamic Dispatch or method Overriding or Subclassing
+
+* Assumptions made by instructor
+** Instructor assumes Programmers have written code in Java and C
+
+* Java code in class
+#+BEGIN_SRC java
+
+public class IntBinaryTree {
+    int i;
+    IntBinaryTree left;
+    IntBinaryTree right;
+
+    IntBinaryTree(int _i, IntBinaryTree _left, IntBinaryTree _right) {
+	this.i = _i;
+	this.left = _left;
+	this.right = _right;
+    }
+
+    int sumAll() {
+	int ans = this.i;
+	if (this.left != null) {
+	    ans += left.sumAll();
+      } else if (this.right != null) {
+	    ans += right.sumAll();
+      }
+      return ans;
+    }
+
+    // assumes array has at least one element
+    static int maxArray(int[] arr) {
+      if (arr == null || arr.length == 0)
+          return -1;
+
+	int ans = arr[0];
+	for (int i = 0; i < arr.length; i++) {
+	    if (arr[i] > ans) {
+		ans = array[i];
+          }
+	}
+	return ans;
+    }
+}
+
+#+END_SRC
