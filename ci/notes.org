@@ -1,4 +1,3 @@
-
 * Notes for week 1
 ** What's recursion?
 Recursion is the idea of defining some computation in terms of itself, defining some data in terms of itself.
@@ -54,7 +53,6 @@ public class IntBinaryTree {
 #+END_SRC
 
 * Pdf Reading notes
-
 ** ML Expression and Variable Bindings
 - ML program is a sequence of /bindings/.
 - Each /binding/ gets *type-checked* and then *evaluated*.
