@@ -1,17 +1,18 @@
-* Notes for week 1
-** What's recursion?
+* Week 1
+** Notes for week 1
+*** What's recursion?
 Recursion is the idea of defining some computation in terms of itself, defining some data in terms of itself.
 
-** Implementation Vs Interface
+*** Implementation Vs Interface
 The idea that client of some code only have a high level idea of what the code is doing and should not have exposed to them the implementation details. They should'nt rely on those implementation details. This goes by a lot of different names: abstraction, encapsulation, and modularity.
 
-** Syllabus
-*** Dynamic Dispatch or method Overriding or Subclassing
+*** Syllabus
+**** Dynamic Dispatch or method Overriding or Subclassing
 
-** Assumptions made by instructor
-*** Instructor assumes Programmers have written code in Java and C
+*** Assumptions made by instructor
+**** Instructor assumes Programmers have written code in Java and C
 
-** Java code in class
+*** Java code in class
 #+BEGIN_SRC java
 
 public class IntBinaryTree {
@@ -52,8 +53,8 @@ public class IntBinaryTree {
 
 #+END_SRC
 
-* Pdf Reading notes
-** ML Expression and Variable Bindings
+** Pdf Reading notes
+*** ML Expression and Variable Bindings
 - ML program is a sequence of /bindings/.
 - Each /binding/ gets *type-checked* and then *evaluated*.
 - /Variable binding/
@@ -64,8 +65,7 @@ public class IntBinaryTree {
   #+END_SRC
 
 
-
-** Special words with meanings [0/6] 
+*** Special words with meanings [0/6] 
 - [ ] bindings
   - [ ] Variable binding
 - [ ] type-checking
