@@ -1,7 +1,7 @@
 (* Homework1 SML Code *)
 
 (* 
-
+   problem 1.
    int * int * int 
    yyyy  mm    dd 
    
@@ -19,7 +19,6 @@ fun is_older (date_1 : int * int * int, date_2 : int * int * int) =
 			 			then date check
 						else false
 		*)
-
 		if #1 date_1 = #1 date_2  (* if years are equal check months *)
 		then
 				if #2 date_1 = #2 date_2  (* if months are equal check day *)
@@ -27,3 +26,17 @@ fun is_older (date_1 : int * int * int, date_2 : int * int * int) =
 				else #2 date_1 < #2 date_2 
 		else #1 date_1 < #2 date_2
 
+(* 
+   problem 2:  
+		Write a function number_in_month that takes a list of dates and a
+		month (i.e., an int) and returns how many dates in the list are in the
+		given month. 
+*)
+fun number_in_month (xs : (int * int * int) list, month : int) =
+		if null xs
+		then 0
+		else
+				if #2 (hd xs) = month
+				then 1 + number_in_month(tl xs, month)
+				else number_in_month(tl xs, month)
+		
