@@ -188,3 +188,54 @@ fun oldest (dates : (int*int*int) list) =
 						SOME (oldest_non_empty (dates))
 				end
 		
+
+(*
+  Problem 12:
+	 Write functions number_in_months_challenge and
+	 dates_in_months_challenge that are like your solutions to problems
+	 3 and 5 except having a month in the second argument multiple times
+	 has no more effect than having it once.
+*)
+
+(* The idea is to process remove the dates after they have been processed  *)
+fun number_in_months_challenge (dates : (int * int * int) list, months : int list) =
+		if null months
+		then 0
+		else let
+				  fun removes_dates_of_month (dates: (int * int * int) list, month : int) =
+							if null dates
+							then []
+							else if #2 (hd dates) = month
+							then removes_dates_of_month (tl dates, month)
+							else hd dates :: removes_dates_of_month (tl dates, month)
+				 in
+						 number_in_month (dates, hd months) + number_in_months_challenge (removes_dates_of_month (dates, hd months), tl months)
+		     end
+
+(* The idea is to process and to remove the dates after they have been processed. *)
+fun dates_in_months_challenge (dates: (int * int * int) list, months : int list) =
+		if null months
+		then []
+		else let
+				    fun remove_dates_of_month (dates: (int * int * int) list, month : int) =
+								if null dates
+								then []
+								else if #2 (hd dates) = month
+								then remove_dates_of_month (tl dates, month)
+								else hd dates :: remove_dates_of_month ( tl dates, month)
+		     in
+						 dates_in_month (dates, hd months) @ dates_in_months_challenge (remove_dates_of_month(dates, hd months), tl months)
+		     end
+
+(* 
+  Problem 13:
+		Write a function reasonable_date that takes a date and determines
+		if it describes a real date in the common era. A “real date” has a
+		positive year (year 0 did not exist), a month between 1 and 12,
+		and a day appropriate for the month. Solutions should properly
+		handle leap years. Leap years are years that are either divisible
+		by 400 or divisible by 4 but not divisible by 100. (Do not worry
+		about days possibly lost in the conversion to the Gregorian
+		calendar in the Late 1500s.)
+*)
+
