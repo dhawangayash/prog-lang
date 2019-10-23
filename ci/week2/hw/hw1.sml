@@ -1,24 +1,15 @@
 (* Homework1 SML Code *)
 
 (* 
-   problem 1.
-   int * int * int 
-   yyyy  mm    dd 
-   
-  A "resonable" date has a positive year, 
-  a month between 1 and 12, AND
-  a day no greater than 31 ( or less depending on the month) 
+   Problem 1.
+		int * int * int
+		yyyy  mm    dd
 
+		A "resonable" date has a positive year,
+		a month between 1 and 12, AND
+		a day no greater than 31 ( or less depending on the month)
 *)
-
 fun is_older (date_1 : int * int * int, date_2 : int * int * int) =
-		(* 
-       if year is smaller return true
-			 if year is equal 
-			 then if month is equal
-			 			then date check
-						else false
-		*)
 		if #1 date_1 = #1 date_2  (* if years are equal check months *)
 		then
 				if #2 date_1 = #2 date_2  (* if months are equal check day *)
@@ -27,17 +18,17 @@ fun is_older (date_1 : int * int * int, date_2 : int * int * int) =
 		else #1 date_1 < #2 date_2
 
 (* 
-   problem 2:  
+   Problem 2:
 		Write a function number_in_month that takes a list of dates and a
 		month (i.e., an int) and returns how many dates in the list are in the
-		given month. 
+		given month.
 *)
 fun number_in_month (dates : (int * int * int) list, month : int) =
 		if null dates
 		then 0
 		else
 				if #2 (hd dates) = month
-				then 1 + number_in_month(tl dates, month)
+				then 1 + number_in_month (tl dates, month)
 				else number_in_month (tl dates, month)
 
 (* 
@@ -116,7 +107,7 @@ fun get_nth (strs : string list, n : int) =
 			comma following the day and use capitalized English month names:
 			January, February, March, April, May, June, July, August,
 			September, October, November, December.
-	*)
+*)
 fun date_to_string (date : int * int * int) =
 		let
 				val month = #2 date
@@ -145,7 +136,7 @@ fun number_before_reaching_sum (sum : int, xs : int list) =
 		then ~1  (* You already over-reached, step back by one to get the exact point of inflection *)
 		else 1 + number_before_reaching_sum(sum - hd xs, tl xs)
 
-(* 
+(*
 	Problem 9:
 		Write a function what_month that takes a day of year (i.e., an int
 		between 1 and 365) and returns what month that day is in (1 for
@@ -159,7 +150,7 @@ fun what_month (day_of_year : int) =
 				1 + number_before_reaching_sum (day_of_year, months) (* add the current month into the current months *)
 		end
 
-(* 
+(*
    Problem 10: 
 		Write a function month_range that takes two days of the year day1 and day2 and returns an int list [m1,m2,...,mn],
     where m1 is the month of day1,
@@ -172,13 +163,13 @@ fun month_range (day1 : int, day2 : int) =
 		then what_month day1 ::[]
 		else what_month day1 :: month_range(day1 + 1, day2)
 
-(* 
+(*
    Problem 11:
 		Write a function oldest that takes a list of dates AND evaluates to an (int*int*int) option.
-    It evaluates to NONE if the list has no dates AND 
+    It evaluates to NONE if the list has no dates AND
                     SOME d if the date d is the oldest date in the list.
 *)
-fun oldest (dates : (int*int*int) list) = 
+fun oldest (dates : (int*int*int) list) =
 		if null dates
 		then NONE
 		else let (* Using the classes example of better_max2 approach *)
