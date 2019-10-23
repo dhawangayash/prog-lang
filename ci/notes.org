@@ -73,3 +73,6 @@ public class IntBinaryTree {
 - [ ] static environment / context
 - [ ] dynamic environment
 - [ ] environment
+
+* Reading Resources 
+URL-CMU: [[https://www.cs.cmu.edu/~rwh/introsml/contents.htm][CMU-SML-notes]]

@@ -198,34 +198,26 @@ fun oldest (dates : (int*int*int) list) =
 *)
 
 (* The idea is to process remove the dates after they have been processed  *)
+fun removes_dates_of_month (dates: (int * int * int) list, month : int) =
+		if null dates
+		then []
+		else if #2 (hd dates) = month
+		then removes_dates_of_month (tl dates, month)
+		else hd dates :: removes_dates_of_month (tl dates, month)
+
 fun number_in_months_challenge (dates : (int * int * int) list, months : int list) =
 		if null months
 		then 0
-		else let
-				  fun removes_dates_of_month (dates: (int * int * int) list, month : int) =
-							if null dates
-							then []
-							else if #2 (hd dates) = month
-							then removes_dates_of_month (tl dates, month)
-							else hd dates :: removes_dates_of_month (tl dates, month)
-				 in
-						 number_in_month (dates, hd months) + number_in_months_challenge (removes_dates_of_month (dates, hd months), tl months)
-		     end
+		else number_in_month (dates, hd months)
+				 + number_in_months_challenge (
+						 removes_dates_of_month (dates, hd months), tl months)
 
-(* The idea is to process and to remove the dates after they have been processed. *)
 fun dates_in_months_challenge (dates: (int * int * int) list, months : int list) =
 		if null months
 		then []
-		else let
-				    fun remove_dates_of_month (dates: (int * int * int) list, month : int) =
-								if null dates
-								then []
-								else if #2 (hd dates) = month
-								then remove_dates_of_month (tl dates, month)
-								else hd dates :: remove_dates_of_month ( tl dates, month)
-		     in
-						 dates_in_month (dates, hd months) @ dates_in_months_challenge (remove_dates_of_month(dates, hd months), tl months)
-		     end
+		else dates_in_month (dates, hd months)
+				 @ dates_in_months_challenge (
+						 removes_dates_of_month(dates, hd months), tl months)
 
 (* 
   Problem 13:
@@ -237,5 +229,33 @@ fun dates_in_months_challenge (dates: (int * int * int) list, months : int list)
 		by 400 or divisible by 4 but not divisible by 100. (Do not worry
 		about days possibly lost in the conversion to the Gregorian
 		calendar in the Late 1500s.)
-*)
 
+		int * int * int
+		yyyy  mm    dd
+*)
+fun resonable_date (date: (int * int * int)) =
+		if #1 date <= 0
+		then false
+		else
+				let
+					fun months_of_year () =
+							if #1 date mod 400 = 0 orelse #1 date mod 4 = 0
+																						andalso not (((#1 date) mod 100) = 0)
+							then [31,29,31,30,31,30,31,31,30,31,30,31]
+							else [31,28,31,30,31,30,31,31,30,31,30,31]
+					fun get_nth (xs : int list, n : int) =
+							if n = 1
+							then hd xs
+							else get_nth(tl xs, n-1)
+		    in
+						if 1 <= #2 date andalso 12 >= #2 date
+						then
+								let
+										val day_in_month_limit = get_nth (months_of_year(), #2 date)
+										val day = #3 date
+								in
+										1 <= day andalso day_in_month_limit >= day
+								end
+						else false
+
+				end
